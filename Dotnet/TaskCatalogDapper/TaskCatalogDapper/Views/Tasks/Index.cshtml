@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Listar Tarefas";
+}
+@model IEnumerable<TaskCatalogDapper.Models.TaskItem>
+
+<h1>Lista de Tarefas</h1>
+
+<div class="d-flex justify-content-end mb-4">
+    <a href="/Tasks/Create"><button type="button" class="btn btn-primary">Criar Tarefa</button></a>
+</div>
+
+@if (Model.Any())
+{
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Título</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Prioridade</th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int row = 0;
+            }
+            @foreach (var item in Model)
+            {
+                row++;
+                <tr>
+                    <th scope="row">@row</th>
+                    <td>@item.Title</td>
+                    <td>@item.Description</td>
+                    <td>@item.Priority</td>
+                    <td>
+                        <a href="/Tasks/Edit/@item.Id">Editar</a>
+                        <a href="/Tasks/Delete/@item.Id">Excluir</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-info" role="alert">
+        Nenhuma tarefa para exibir.
+    </div>
+}

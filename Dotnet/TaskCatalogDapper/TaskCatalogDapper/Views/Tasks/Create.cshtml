@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Criar Tarefa";
+}
+@model TaskCatalogDapper.Models.TaskItem
+
+<form asp-action="@(ViewContext.RouteData.Values["action"])">
+    <label>Título:</label>
+    <input asp-for="Title"></input>
+    <br />
+    <label>Descrição:</label>
+    <input asp-for="Description"></input>
+    <br />
+    <label>Prioridade:</label>
+    <input asp-for="Priority"></input>
+    <br />
+    <button type="submit">Salvar</button>
+</form>
